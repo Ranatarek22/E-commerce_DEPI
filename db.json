@@ -1,0 +1,26 @@
+{
+  "mazenz": [
+    {
+      "id": 2,
+      "name": "ali",
+      "email": "ali@gmail.com",
+      "password": 123,
+      "role": "user"
+    },
+    {
+      "name": "test",
+      "email": "test@gmail.com",
+      "gender": "male",
+      "password": "test123",
+      "id": 3
+    },
+    {
+      "name": "mazen",
+      "email": "kk@kk.com",
+      "gender": "male",
+      "password": "123456",
+      "id": 4,
+      "role": "admin"
+    }
+  ]
+}
