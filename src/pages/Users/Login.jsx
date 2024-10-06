@@ -1,4 +1,4 @@
-import React, { useState ,useEffect} from "react";
+import React, { useState } from "react";
 import {
   Card,
   Input,
@@ -6,45 +6,42 @@ import {
   Button,
   Typography,
 } from "@material-tailwind/react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { apiInstance } from "../../../axios";
 
-const Login = ({users, SetLogged}) => {
+const Register = () => {
   const [user, setUser] = useState({
     name: "",
     email: "",
     password: "",
   });
-  //   const changeUserName=(e)=>{
-
-  // console.log(e.target.value);
-
-  // };
-
-  const getUser = () => {
-    axios({
-      method: "get",
-      url: "http://localhost:3000/mazenz",
-    });
-    // .then((res) => console.log(res.data));
-  };
-  useEffect(() => {
-    getUser();
-  }, []);
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
-  const handelForm = (e) => {
+
+  const register = async (e) => {
     e.preventDefault();
+    try {
+      const formData = new FormData();
+      formData.append("name", user.name);
+      formData.append("email", user.email);
+      formData.append("password", user.password);
 
-    const check = users.find(
-      ({ name, password }) => user.name == name && user.password == password
-    );
+      const res = await apiInstance.post("/auth/register", formData, {
+        // headers: {
+        //   "Content-Type": "multipart/form-data",
+        // },
+      });
 
-    if (check) {
-      localStorage.cn = check.id;
-      SetLogged(true);
-      navigate("/");
+      console.log("Registration success:", res);
+      localStorage.setItem("cn", res.data.token);
+
+      // navigate("/login");
+    } catch (err) {
+      console.error("Error during registration:", err);
+      setError("Failed to register. Please try again.");
     }
   };
+
   return (
     <div className="w-full flex justify-center items-center pt-8 ">
       <Card color="transparent" shadow={false}>
@@ -53,7 +50,7 @@ const Login = ({users, SetLogged}) => {
         </Typography>
 
         <form
-          onSubmit={handelForm}
+          onSubmit={register}
           className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96"
         >
           <div className="mb-1 flex flex-col gap-6">
@@ -89,6 +86,7 @@ const Login = ({users, SetLogged}) => {
               }
             />
           </div>
+
           <Checkbox
             label={
               <Typography
@@ -96,7 +94,7 @@ const Login = ({users, SetLogged}) => {
                 color="gray"
                 className="flex items-center font-normal"
               >
-                I agree the
+                I agree to the
                 <a
                   href="#"
                   className="font-medium transition-colors hover:text-gray-900"
@@ -107,12 +105,20 @@ const Login = ({users, SetLogged}) => {
             }
             containerProps={{ className: "-ml-2.5" }}
           />
+
           <Button type="submit" className="mt-6" fullWidth>
-            sign up
+            Sign Up
           </Button>
+
+          {error && (
+            <Typography color="red" className="mt-4 text-center font-normal">
+              {error}
+            </Typography>
+          )}
+
           <Typography color="gray" className="mt-4 text-center font-normal">
             Already have an account?{" "}
-            <a href="#" className="font-medium text-gray-900">
+            <a href="/login" className="font-medium text-gray-900">
               Sign In
             </a>
           </Typography>
@@ -122,4 +128,4 @@ const Login = ({users, SetLogged}) => {
   );
 };
 
-export default Login;
+export default Register;
