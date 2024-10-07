@@ -33,7 +33,7 @@ const Productss = ({products,deleted,SetDeleted}) => {
     };
   return (
     <div className='flex justify-center items-center flex-col m-9 gap-3'>
-      < Link to ="/add">
+      < Link to ="/admin/add">
       <Button variant="gradient" color="green">Add Products</Button>
       </Link>
       
