@@ -22,7 +22,7 @@ const Edituser = ({deleted,SetDeleted}) => {
     const getuser=()=>{
         axios({
             method:"get",
-            url:`http://localhost:3000/users/${userId}`
+            url:`http://localhost:3000/mazenz/${userId}`
         }).then(({data})=>{
             SetUser(data)
         })
@@ -42,7 +42,7 @@ const Edituser = ({deleted,SetDeleted}) => {
                 showConfirmButton: false,
                 timer: 1500
               }).then(()=>{
-                navigate("/dashboard")
+                navigate("/admin")
               });
         })
     }

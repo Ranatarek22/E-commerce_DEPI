@@ -42,7 +42,7 @@ const AddProduct = ({deleted,SetDeleted}) => {
                 showConfirmButton: false,
                 timer: 1500
               }).then(()=>{
-                navigate("/dashboard")
+                navigate("/admin")
               });
         })
     }
