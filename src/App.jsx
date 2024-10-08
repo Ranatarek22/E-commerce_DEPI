@@ -8,6 +8,11 @@ function App() {
   const [users, setUsers] = useState([]);
   const [logged, SetLogged] = useState(false);
   const [userDetails, setUserDetails] = useState(null);
+
+  const [products,SetProducts]=useState([]);
+  const [deleted,SetDeleted]=useState(false);
+
+
   logged;
   const getUsers = () => {
     axios({
@@ -30,6 +35,29 @@ function App() {
     }
   }, [logged]);
 
+  const getproducts=()=>{
+    axios({
+      method:"get",
+      url:`http://localhost:3000/products`,
+    }).then(({data})=>{
+      console.log("Fetched products: ", data); // Add logging
+      SetProducts(data);  // Set the fetched user details
+    });
+  }
+  useEffect(()=>{
+    if(logged){
+      getUserDetails()
+    }else{
+      localStorage.cn && SetLogged(true);
+    }
+    
+  },[logged])
+useEffect(()=>{
+  getUsers();
+  getproducts();
+},[deleted]);
+
+
   useEffect(() => {
     getUsers();
   }, []);
@@ -42,7 +70,11 @@ function App() {
             <LayoutUser users={users} logged={logged} userDetails={userDetails}  SetLogged={SetLogged} />
           }
         />
-        <Route path="/admin/*" element={<LayoutAdmin />} />
+
+        <Route path="/admin/*" element={<LayoutAdmin users={users} products={products} deleted={deleted} SetDeleted={SetDeleted}/>} />
+
+       
+
       </Routes>
     </div>
   );
