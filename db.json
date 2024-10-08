@@ -4,30 +4,20 @@
       "id": 2,
       "name": "ali",
       "email": "ali@gmail.com",
-      "password": 123,
-      "role": "user"
+      "role": "admin"
     },
     {
-      "name": "test",
-      "email": "test@gmail.com",
-      "gender": "male",
-      "password": "test123",
-      "id": 3
-    },
-    {
+      "id": 4,
       "name": "mazen",
       "email": "kk@kk.com",
-      "gender": "male",
-      "password": "123456",
-      "id": 4,
-      "role": "admin"
+      "role": "user"
     }
   ],
   "products": [
     {
       "id": 1,
       "title": " Laptops",
-      "price": 2000,
+      "price": 20000,
       "description": "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
       "category": "men's clothing",
       "image": "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",

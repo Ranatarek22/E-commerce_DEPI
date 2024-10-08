@@ -31,7 +31,7 @@ const Edituser = ({deleted,SetDeleted}) => {
         e.preventDefault();
         axios({
             method:"put",
-            url:`http://localhost:3000/users/${userId}`,
+            url:`http://localhost:3000/mazenz/${userId}`,
             data:user
         }).then(()=>{
             SetDeleted(!deleted);

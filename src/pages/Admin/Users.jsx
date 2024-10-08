@@ -22,7 +22,7 @@ const Users = ({users,deleted,SetDeleted}) => {
           Swal.fire("deleted!", "", "success");
           axios({
             method:"delete",
-            url:`http://localhost:3000/users/${id}`,
+            url:`http://localhost:3000/mazenz/${id}`,
           }).then(()=>{
             SetDeleted(!deleted);
           })
@@ -35,7 +35,7 @@ const Users = ({users,deleted,SetDeleted}) => {
         const newRole = user.role === "admin" ? "user" : "admin";
         axios({
           method: "put",
-          url: `http://localhost:3000/users/${user.id}`,
+          url: `http://localhost:3000/mazenz/${user.id}`,
           data: { ...user, role: newRole },
         }).then(() => {
           SetDeleted(!deleted);
