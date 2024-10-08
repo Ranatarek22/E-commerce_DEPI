@@ -8,8 +8,11 @@ function App() {
   const [users, setUsers] = useState([]);
   const [logged, SetLogged] = useState(false);
   const [userDetails, setUserDetails] = useState(null);
+
   const [products,SetProducts]=useState([]);
   const [deleted,SetDeleted]=useState(false);
+
+
   logged;
   const getUsers = () => {
     axios({
@@ -53,6 +56,8 @@ useEffect(()=>{
   getUsers();
   getproducts();
 },[deleted]);
+
+
   useEffect(() => {
     getUsers();
   }, []);
@@ -65,7 +70,11 @@ useEffect(()=>{
             <LayoutUser users={users} logged={logged} userDetails={userDetails}  SetLogged={SetLogged} />
           }
         />
+
         <Route path="/admin/*" element={<LayoutAdmin users={users} products={products} deleted={deleted} SetDeleted={SetDeleted}/>} />
+
+       
+
       </Routes>
     </div>
   );
