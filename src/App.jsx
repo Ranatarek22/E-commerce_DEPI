@@ -42,7 +42,7 @@ function App() {
   const getproducts=()=>{
     axios({
       method:"get",
-      url:`http://localhost:5000/api/products`,
+      url:`http://localhost:3000/products`,
     }).then(({data})=>{
       console.log("Fetched products: ", data); // Add logging
       SetProducts(data);  // Set the fetched user details
