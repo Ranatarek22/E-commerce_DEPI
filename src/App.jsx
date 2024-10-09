@@ -4,6 +4,10 @@ import LayoutUser from "./pages/LayoutUser.jsx";
 import LayoutAdmin from "./pages/LayoutAdmin.jsx";
 import axios from "axios";
 import { data } from "autoprefixer";
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 function App() {
   const [users, setUsers] = useState([]);
   const [logged, SetLogged] = useState(false);
@@ -38,7 +42,7 @@ function App() {
   const getproducts=()=>{
     axios({
       method:"get",
-      url:`http://localhost:3000/products`,
+      url:`http://localhost:5000/api/products`,
     }).then(({data})=>{
       console.log("Fetched products: ", data); // Add logging
       SetProducts(data);  // Set the fetched user details
@@ -63,6 +67,9 @@ useEffect(()=>{
   }, []);
   return (
     <div>
+      <ToastContainer
+        position="bottom-right" 
+      />
       <Routes>
         <Route
           path="/*"

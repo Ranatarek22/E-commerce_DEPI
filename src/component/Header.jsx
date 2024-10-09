@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import { FaBookOpen, FaFolderOpen } from "react-icons/fa";
+import { useContext } from 'react'
+import { ShopContext } from '../context/ShopContext'
+import {assets} from '../frontend_assets/assets'
 
 import {
   Navbar,
@@ -21,12 +24,15 @@ import {
   UserCircleIcon,
   UserIcon 
 } from "@heroicons/react/24/solid";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate, useLocation  } from "react-router-dom";
 // da ta2reban  gahez feeh kol 7aga na2es bas enak tozbot el style t5ale shop w home fe el center 
 // 3ayz t8yar fel design tmam da mogarad structure bas
 
 function NavList({ logged, SetLogged, userDetails }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [visible, setVisible] = useState(false);
+  const {showSearch, setShowSearch, cartItems, countCart} = useContext(ShopContext);
+  const location = useLocation();
 
   const closeMenu = () => setIsMenuOpen(false);
 
@@ -39,16 +45,16 @@ function NavList({ logged, SetLogged, userDetails }) {
         color="blue-gray"
         className="p-1 font-medium"
       >
-        Home
+        HOME
       </Typography>
       <Typography
         as={NavLink}
-        to="/Products"
+        to="/collection"
         variant="small"
         color="blue-gray"
         className="p-1 font-medium"
       >
-        Shop
+        COLLECTION
       </Typography>
 
       {logged ? (
@@ -99,7 +105,7 @@ function NavList({ logged, SetLogged, userDetails }) {
               variant="small"
               className=" text-red-600 hover:text-red-800 font-semibold cursor-pointer mt-2 "
             >
-              SignOut
+              SIGNOUT
             </Typography>
           </MenuList>
         </Menu>
@@ -111,9 +117,17 @@ function NavList({ logged, SetLogged, userDetails }) {
           color="blue-gray"
           className="p-1 font-medium"
         >
-          {localStorage.cn ? "Loading" : "Login"}
+          {localStorage.cn ? "LOADING" : "LOGIN"}
         </Typography>
       )}
+      <div className='flex items-center gap-6'>
+            <img onClick={()=>setShowSearch(true)} src={assets.search_icon} alt='' className={`w-5 cursor-pointer ${location.pathname !== '/collection'? 'hidden' : ''}`} />
+          
+            <Link to='/cart' className='relative'>
+                <img src={assets.cart_icon} alt='' className='w-5 cursor-pointer' />
+                <p className='absolute right-[-5px] bottom-[-2px] w-4 text-center leading-4 bg-black text-white rounded-full text-sm'>{countCart}</p>
+            </Link>
+      </div>
     </ul>
   );
 }
