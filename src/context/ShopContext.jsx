@@ -24,7 +24,7 @@ export const ShopContext = createContext();
                 const response = await axios.get('http://localhost:5000/api/products');
                 setProducts(response.data);
             } catch (error) {
-                setError('Error fetching products');
+                // setError('Error fetching products');
                 console.error('Error fetching products:', error);
             } finally {
                 setLoading(false);
