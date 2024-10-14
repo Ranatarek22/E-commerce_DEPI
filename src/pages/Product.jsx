@@ -45,20 +45,22 @@ const Product = () => {
           </div>
           <p className='font-bold text-3xl mt-5'>${productData.price}</p>
           <p className='text-2xl mt-5 text-gray-700'>{productData.description}</p>
-          <div className='flex flex-col gap-4 mt-5'>
-            <p className='font-bold text-xl'>Select Size</p>
-            <div className='flex gap-2'>
-              {productData.sizes.map((item, index) => (
-                <button
-                  onClick={() => setSize(item)}
-                  className={`border py-2 px-4 ${size === item ? 'bg-gray-300' : ''}`}
-                  key={index}
-                >
-                  {item}
-                </button>
-              ))}
+          {productData.sizes.length > 0 && ( // Check if sizes array is not empty
+            <div className='flex flex-col gap-4 mt-5'>
+              <p className='font-bold text-xl'>Select Size</p>
+              <div className='flex gap-2'>
+                {productData.sizes.map((item, index) => (
+                  <button
+                    onClick={() => setSize(item)}
+                    className={`border py-2 px-4 ${size === item ? 'bg-gray-300' : ''}`}
+                    key={index}
+                  >
+                    {item}
+                  </button>
+                ))}
+              </div>
             </div>
-          </div>
+          )}
           <button onClick={() => addToCart(productData.id, size)} className='mt-5 bg-black text-white px-8 py-3 hover:bg-gray-800 text-sm'>ADD TO CART</button>
           <hr className='mt-4 mb-4' />
           <div className='text-sm text-gray-600'>
