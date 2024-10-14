@@ -21,7 +21,7 @@ const RelatedProducts = ({category, subCategory}) => {
     <div>
         <div className='flex flex-row gap-3 mt-10 mb-10 '>
             {related.map((item, index)=>(
-                <ProductItem key={index} id={item._id} image={item.image} name={item.name} price={item.price}/>
+                <ProductItem key={index} id={item.id} image={item.image} name={item.title} price={item.price}/>
             ))}
         </div>
       
