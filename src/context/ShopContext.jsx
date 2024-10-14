@@ -38,7 +38,9 @@ export const ShopContext = createContext();
     if (error) return <div>{error}</div>;
 
     const addToCart = (productID, productSize)=>{
-        if(!productSize){
+        let productData = products.find(product => product.id === productID);
+
+        if (productData.sizes && productData.sizes.length > 0 && !productSize) {
             toast.error('Select Product Size!');
             return;
         }
@@ -46,18 +48,26 @@ export const ShopContext = createContext();
         let counter = countCart;
         
         if(cartCopy[productID]){
-            if(cartCopy[productID][productSize]){
-                cartCopy[productID][productSize] += 1;
-                setCountCart(counter + 1);
+            if(productSize){
+                if(cartCopy[productID][productSize]){
+                    cartCopy[productID][productSize] += 1;
+                }
+                else{
+                    cartCopy[productID][productSize] = 1;
+                }
             }
             else{
-                cartCopy[productID][productSize] = 1;
-                setCountCart(counter + 1);
+                cartCopy[productID]['noSize'] = (cartCopy[productID]['noSize'] || 0) + 1;
             }
+            setCountCart(counter + 1);
         }
         else{
             cartCopy[productID] = {};
-            cartCopy[productID][productSize] = 1;
+            if (productSize) {
+                cartCopy[productID][productSize] = 1;
+            } else {
+                cartCopy[productID]['noSize'] = 1;
+            }
             setCountCart(counter + 1);
         }
         toast.success('Product Added To Cart.');
