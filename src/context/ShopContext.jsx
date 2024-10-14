@@ -21,7 +21,7 @@ export const ShopContext = createContext();
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/api/products');
+                const response = await axios.get('http://localhost:3000/products');
                 setProducts(response.data);
             } catch (error) {
                 // setError('Error fetching products');
@@ -77,7 +77,7 @@ export const ShopContext = createContext();
     const getCartAmount = ()=>{
         let totalAmount = 0;
         for(const itemId in cartItems){
-            let itemData = products.find((product)=> product._id === itemId);
+            let itemData = products.find((product)=> product.id === parseInt(itemId));
             for(const itemSize in cartItems[itemId]){
                 if(cartItems[itemId][itemSize] > 0){
                     totalAmount += itemData.price * cartItems[itemId][itemSize];
