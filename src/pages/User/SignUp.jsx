@@ -23,16 +23,16 @@ const Signup = () => {
     
     if (Object.keys(newErrors).length === 0) {
       try {
-        // Send a POST request to your backend for signup
-        //  #################  ابوس ايدك متغيرش فالكود #################
-        const response = await axios.post('https://your-backend-api/signup', {
+    
+        const response = await axios.post('https://blush-warp-bathroom.glitch.me/mazenz', {
+          name: username,
           email,
-          username,
           password,
+          role: 'user'
         });
 
-        // Assuming the backend returns a success response
-        if (response.status === 200) {
+     
+        if (response.status === 201) {
           Swal.fire({
             icon: 'success',
             title: 'Signup Successful!',
@@ -40,16 +40,23 @@ const Signup = () => {
             showConfirmButton: false,
             timer: 1500,
           }).then(() => {
-            // Redirect to login law 3ayz tro7 3la el dashboard okay iam not done yet mstany el back yeb3at el "role"
             navigate('/login');
           });
         }
       } catch (error) {
-        // If the API returns an error
+        // Handle specific error cases
+        let errorMessage = 'An error occurred. Please try again.';
+        if (error.response) {
+          if (error.response.status === 400) {
+            errorMessage = 'Email already exists. Please use a different email.';
+          } else if (error.response.status === 500) {
+            errorMessage = 'Server error. Please try again later.';
+          }
+        }
         Swal.fire({
           icon: 'error',
           title: 'Signup Failed',
-          text: error.response?.data?.message || 'An error occurred. Please try again.',
+          text: errorMessage,
         });
       }
     } else {

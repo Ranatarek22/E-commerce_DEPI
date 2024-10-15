@@ -18,7 +18,7 @@ const LayoutUser = ({ users, SetLogged, logged, userDetails }) => {
       <Header logged={logged} SetLogged={SetLogged} userDetails={userDetails} />
       <SearchBar/>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home logged={logged} />} />
         <Route path="/Products" element={<Products />} />
         <Route path='/collection' element={<Collection/>} />
         <Route path='/cart' element={<Cart/>} />

@@ -20,14 +20,12 @@ const Login = () => {
 
     if (Object.keys(newErrors).length === 0) {
       try {
-        // Post lel api 
-        const response = await axios.post('https://Rana-backend-api/login', {
-          username,
-          password,
-        });
+        const response = await axios.get('https://blush-warp-bathroom.glitch.me/mazenz');
+        const users = response.data;
+        const user = users.find(u => u.name === username && u.password === password);
 
-    // law eshta8al
-        if (response.status === 200) {
+        if (user) {
+          localStorage.setItem('cn', user.id);
           Swal.fire({
             icon: 'success',
             title: 'Login Successful!',
@@ -35,16 +33,16 @@ const Login = () => {
             showConfirmButton: false,
             timer: 1500,
           }).then(() => {
-            // roo7 3la eldashboard
             navigate('/');
           });
+        } else {
+          throw new Error('Invalid username or password');
         }
       } catch (error) {
-      // hena apo error
         Swal.fire({
           icon: 'error',
           title: 'Login Failed',
-          text: error.response?.data?.message || 'An error occurred. Please try again.',
+          text: error.message || 'An error occurred. Please try again.',
         });
       }
     } else {
