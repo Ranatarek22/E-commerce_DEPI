@@ -28,7 +28,7 @@ const EditProduct = ({deleted,SetDeleted}) => {
     const getproduct=()=>{
         axios({
             method:"get",
-            url:`http://localhost:3000/products/${productId}`
+            url:`https://blush-warp-bathroom.glitch.me/products/${productId}`
         }).then(({data})=>{
             SetProduct(data)
         })
@@ -37,7 +37,7 @@ const EditProduct = ({deleted,SetDeleted}) => {
         e.preventDefault();
         axios({
             method:"put",
-            url:`http://localhost:3000/products/${productId}`,
+            url:`https://blush-warp-bathroom.glitch.me/products/${productId}`,
             data:product
         }).then(()=>{
             SetDeleted(!deleted);

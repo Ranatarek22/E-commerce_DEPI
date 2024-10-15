@@ -22,7 +22,7 @@ const Users = ({users,deleted,SetDeleted}) => {
           Swal.fire("deleted!", "", "success");
           axios({
             method:"delete",
-            url:`http://localhost:3000/mazenz/${id}`,
+            url:`https://blush-warp-bathroom.glitch.me/mazenz/${id}`,
           }).then(()=>{
             SetDeleted(!deleted);
           })
@@ -35,7 +35,7 @@ const Users = ({users,deleted,SetDeleted}) => {
         const newRole = user.role === "admin" ? "user" : "admin";
         axios({
           method: "put",
-          url: `http://localhost:3000/mazenz/${user.id}`,
+          url: `https://blush-warp-bathroom.glitch.me/mazenz/${user.id}`,
           data: { ...user, role: newRole },
         }).then(() => {
           SetDeleted(!deleted);

@@ -18,7 +18,7 @@ const View = () => {
     const getproducts=()=>{
         axios({
           method:"get",
-          url:`http://localhost:3000/products/${productId}`,
+          url:`https://blush-warp-bathroom.glitch.me/products/${productId}`,
         }).then(({data})=>{
             if(data.id){
                 console.log("Fetched product: ", data); // Add logging

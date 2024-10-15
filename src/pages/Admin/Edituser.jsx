@@ -22,7 +22,7 @@ const Edituser = ({deleted,SetDeleted}) => {
     const getuser=()=>{
         axios({
             method:"get",
-            url:`http://localhost:3000/mazenz/${userId}`
+            url:`https://blush-warp-bathroom.glitch.me/mazenz/${userId}`
         }).then(({data})=>{
             SetUser(data)
         })
@@ -31,7 +31,7 @@ const Edituser = ({deleted,SetDeleted}) => {
         e.preventDefault();
         axios({
             method:"put",
-            url:`http://localhost:3000/mazenz/${userId}`,
+            url:`https://blush-warp-bathroom.glitch.me/mazenz/${userId}`,
             data:user
         }).then(()=>{
             SetDeleted(!deleted);

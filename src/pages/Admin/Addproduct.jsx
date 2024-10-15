@@ -31,7 +31,7 @@ const AddProduct = ({deleted,SetDeleted}) => {
         e.preventDefault();
         axios({
             method:"post",
-            url:`http://localhost:3000/products`,
+            url:`https://blush-warp-bathroom.glitch.me/products`,
             data:product
         }).then(()=>{
             SetDeleted(!deleted);

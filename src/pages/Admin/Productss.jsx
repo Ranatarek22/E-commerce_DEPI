@@ -22,7 +22,7 @@ const Productss = ({products,deleted,SetDeleted}) => {
           Swal.fire("deleted!", "", "success");
           axios({
             method:"delete",
-            url:`http://localhost:3000/products/${id}`,
+            url:`https://blush-warp-bathroom.glitch.me/products/${id}`,
           }).then(()=>{
             SetDeleted(!deleted);
           })

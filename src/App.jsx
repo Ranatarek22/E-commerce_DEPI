@@ -21,13 +21,13 @@ function App() {
   const getUsers = () => {
     axios({
       method: "get",
-      url: "http://localhost:3000/mazenz",
+      url: "https://blush-warp-bathroom.glitch.me/mazenz",
     }).then(({ data }) => setUsers(data));
   };
   const getUserDetails = () => {
     axios({
       method: "get",
-      url: `http://localhost:3000/mazenz/${localStorage.cn}`,
+      url: `https://blush-warp-bathroom.glitch.me/mazenz/${localStorage.cn}`,
     }).then(({ data }) => setUserDetails(data));
   };
   useEffect(() => {
@@ -42,7 +42,7 @@ function App() {
   const getproducts=()=>{
     axios({
       method:"get",
-      url:`http://localhost:3000/products`,
+      url:`https://blush-warp-bathroom.glitch.me/products`,
     }).then(({data})=>{
       console.log("Fetched products: ", data); // Add logging
       SetProducts(data);  // Set the fetched user details
