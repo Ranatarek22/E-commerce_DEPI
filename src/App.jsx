@@ -15,9 +15,13 @@ function App() {
 
   const [products,SetProducts]=useState([]);
   const [deleted,SetDeleted]=useState(false);
+  const handleSignOut = () => {
+    localStorage.removeItem('cn'); // Remove user info from localStorage
+    setLogged(false); // Update the logged state
+  };
 
 
-  logged;
+
   const getUsers = () => {
     axios({
       method: "get",
@@ -78,7 +82,7 @@ useEffect(()=>{
           }
         />
 
-        <Route path="/admin/*" element={<LayoutAdmin users={users} products={products} deleted={deleted} SetDeleted={SetDeleted}/>} />
+        <Route path="/admin/*" element={<LayoutAdmin logged={logged} onSignOut={handleSignOut} users={users} products={products} deleted={deleted} SetDeleted={SetDeleted}/>} />
 
        
 
