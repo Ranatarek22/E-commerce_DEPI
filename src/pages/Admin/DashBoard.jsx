@@ -91,7 +91,7 @@ const Dashboard = ({ users, products, deleted, SetDeleted }) => {
   ];
 
   return (
-    <Tabs className="mx-36" value={activeTab} onChange={(value) => setActiveTab(value)}>
+    <Tabs className="mx-1" value={activeTab} onChange={(value) => setActiveTab(value)}>
       <TabsHeader>
         {data.map(({ label, value }) => (
           <Tab key={value} value={value}>

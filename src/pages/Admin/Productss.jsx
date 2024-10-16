@@ -73,7 +73,7 @@ const Productss = ({products,deleted,SetDeleted}) => {
                         color="blue-gray"
                         className="font-normal"
                         >
-                        {title}
+                        {title.length > 50 ? `${title.slice(0, 80)}...` : title}
                         </Typography>
                         </div>
                         </td>
